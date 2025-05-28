@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, computed, Input, input } from '@angular/core';
 import { InvestmentInput } from '../investment-input.model';
 import { CurrencyPipe } from '@angular/common';
 import { InvestmentService } from '../investment.service';
@@ -31,7 +31,10 @@ export class InvestmentResultsComponent {
 
   constructor(private investmentService: InvestmentService) {}
 
-  get results() {
-    return this.investmentService.resultsData;
-  }
+  // get results() {
+  //   return this.investmentService.resultsData;
+  // }
+
+  results = computed(() => this.investmentService.resultsData());
+  // results = () => this.investmentService.resultsData.asReadonly();
 }
